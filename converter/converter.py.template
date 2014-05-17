@@ -1,0 +1,15 @@
+import re
+
+def uni512zg1(input_text=""):
+    output_text = input_text
+    {% for rule in uni512zg1_rules -%}
+    output_text = re.sub(r'{{rule.0}}', r'{{rule.1}}', output_text, flags=re.M)
+    {% endfor %}
+    return output_text
+
+def zg12uni51(input_text=""):
+    output_text = input_text
+    {% for rule in zg12uni51_rules -%}
+    output_text = re.sub(r'{{rule.0}}', r'{{rule.1}}', output_text, flags=re.M)
+    {% endfor %}
+    return output_text
