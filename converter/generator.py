@@ -20,6 +20,7 @@ def main():
 
     for child_dir in child_dirs:
         for template_file in child_dir.glob("*.template"):
+            print("Generating ", template_file.stem)
             with template_file.open('r') as templateFile, \
                 open(os.path.join(child_dir.as_posix(), template_file.stem), 'w') as outputFile:
                 template = Template(templateFile.read())
