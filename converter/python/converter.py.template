@@ -1,0 +1,17 @@
+import re
+
+def uni512zg1(input_text=""):
+    output_text = input_text
+    {% for rule in uni512zg1_rules -%}
+    print("{{ rule }}".replace("$", "\\"), type(output_text))
+    output_text = re.sub('{{rule.0}}', '{{ rule.1|replace("$","\\\\") }}', output_text, flags=re.M)
+    print(output_text, type(output_text))
+    {% endfor %}
+    return output_text
+
+def zg12uni51(input_text=""):
+    output_text = input_text
+    {% for rule in zg12uni51_rules -%}
+    output_text = re.sub('{{rule.0}}', '{{ rule.1|replace("$", "\\\\") }}', output_text, flags=re.M)
+    {% endfor %}
+    return output_text
