@@ -1,7 +1,7 @@
 // Zawgyi<>Unicode converter python module
 // Based on rules from Parabaik Myanmar Text Converter
 // Copyright (C) 2014 Ngwe Tun (Solveware Solution)
-// Copyright (C) 2014 Thura Hlaing
+// Copyright (C) 2014 Ye Mon Kyaw
 
 // This file is part of Paytan.
 
@@ -20,24 +20,24 @@
 
 public class Converter{
 
-public static String uni512zg1(String input_text) {
-    String output_text = input_text;
-    {% for rule in uni512zg1_rules -%}
-    output_text = output_text.replaceAll("{{rule.0}}", "{{rule.1}}");
-    {# // debugging -#}
-    {# console.log("{{rule}}" -#}
-    {% endfor -%}	
-    return output_text;
-}
+    public static String uni512zg1(String input_text) {
+	String output_text = input_text;
+	{% for rule in uni512zg1_rules -%}
+	output_text = output_text.replaceAll("{{rule.0}}", "{{rule.1}}");
+	{# // debugging -#}
+	{# console.log("{{rule}}" -#}
+	{% endfor -%}
+	return output_text;
+    }
 
-public static String zg12uni51(String input_text) {
-    String output_text = input_text;
-    {% for rule in zg12uni51_rules -%}
-    output_text = output_text.replaceAll("{{rule.0}}", "{{rule.1}}");
-    {# // debugging -#}
-    {# console.log("{{rule}}" -#}
-    {% endfor -%}
-    return output_text;
-}
+    public static String zg12uni51(String input_text) {
+	String output_text = input_text;
+	{% for rule in zg12uni51_rules -%}
+	output_text = output_text.replaceAll("{{rule.0}}", "{{rule.1}}");
+	{# // debugging -#}
+	{# console.log("{{rule}}" -#}
+	{% endfor -%}
+	return output_text;
+    }
 
 }
