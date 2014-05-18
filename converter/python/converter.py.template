@@ -10,7 +10,7 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-# Foobar is distributed in the hope that it will be useful,
+# Paytan is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -25,7 +25,7 @@ def uni512zg1(input_text=""):
     {% for rule in uni512zg1_rules -%}
     output_text = re.sub('{{rule.0}}', '{{rule.1|replace("$","\\\\") }}', output_text, flags=re.M)
     {# # debugging -#}
-    {# print("{{rule}}".replace("$", "\\"), type(output_text)) -#}
+    {# print("{{rule}}".replace("$", "\\"), output_text) -#}
     {% endfor -%}
     return output_text
 
@@ -34,6 +34,6 @@ def zg12uni51(input_text=""):
     {% for rule in zg12uni51_rules -%}
     output_text = re.sub('{{rule.0}}', '{{rule.1|replace("$", "\\\\") }}', output_text, flags=re.M)
     {# # debugging -#}
-    {# print("{{rule}}".replace("$", "\\"), type(output_text)) -#}
+    {# print("{{rule}}".replace("$", "\\"), output_text) -#}
     {% endfor -%}
     return output_text
