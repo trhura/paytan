@@ -2,7 +2,7 @@
 
 Not yet another zawgyi<>unicode converter! Using a set of normalized regular expression rules – adapted from Solveware's [parabeik](https://github.com/ngwestar/parabaik) converter –  zawgyi<>unicode conversion routines can be generated for a variety of programming languages.
 
-Currently, the following languages are supported – 
+Currently, the following languages are supported –
 
 * Python
 * Java
@@ -15,17 +15,17 @@ We'll add more languages, especially, `php` . And you can send us a pull request
 ## Usage ##
 
 + Install `python3`, `jinja2`
+
+For Ubuntu,
 ```bash
-$ sudo apt-get install python3
-$ sudo pip install jinja2
+$ sudo apt-get install python3 python3-jijna2
 ```
 
-For OSX,
++ For OSX,
 ```bash
 $ brew install python3
 $ sudo pip3 install jinja2
 ```
-
 
 + Run `generate.py`, and source files for each language will be generated in corresponding directory.
 ```
