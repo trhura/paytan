@@ -19,3 +19,7 @@
 {% for character in characters -%}
 {{character.name}} = '{{character.value}}'
 {% endfor -%}
+
+{% for category in categories -%}
+{{category.name}} = '{{category.characters}}'
+{% endfor -%}
