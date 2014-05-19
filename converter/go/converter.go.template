@@ -23,12 +23,13 @@ package converter
 import "regexp"
 
 {% for rule in uni512zg1_rules -%}
-var uni512zg1_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0}}`);
+var uni512zg1_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0}}`)
 {% endfor -%}
 
 {% for rule in zg12uni51_rules -%}
-var zg12uni51_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0}}`);
+var zg12uni51_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0}}`)
 {% endfor -%}
+{%- print '\n' -%}
 
 func uni512zg1(input_text string) string {
 	output_text := input_text
