@@ -1,0 +1,17 @@
+def uni512zg1(input_text)
+  output_text = input_text
+  {% for rule in uni512zg1_rules -%}
+    output_text = output_text.gsub(/{{rule.0}}/ ,"{{rule.1|replace("$","\\\\") }}")
+  {% endfor -%}
+  # 'return' is not necessary but it's there to prevent 'end' from auto-indent
+  return output_text
+end
+
+def zg12uni51(input_text)
+  output_text = input_text
+  {% for rule in zg12uni51_rules -%}
+    output_text = output_text.gsub(/{{rule.0}}/ ,"{{rule.1|replace("$","\\\\") }}")
+  {% endfor -%}
+  # 'return' is not necessary but it's there to prevent 'end' from auto-indent
+  return output_text
+end
