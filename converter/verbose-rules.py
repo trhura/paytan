@@ -26,9 +26,9 @@ def main():
         rules_writer = csv.writer(outputFile, delimiter="|")
         for uni51, zg1 in rules_reader:
             for name, codepoint in uni51_characters:
-                uni51 = uni51.lower().replace(codepoint, '@'+name)
+                uni51 = uni51.lower().replace(codepoint, '@{'+name+'}')
             for name, codepoint in zg1_charcters:
-                zg1 = zg1.lower().replace(codepoint, '@'+name)
+                zg1 = zg1.lower().replace(codepoint, '@{'+name+'}')
             rules_writer.writerow([uni51, zg1])
 
     with zg12uni51_file.open('r') as rulesFile, \
@@ -37,10 +37,9 @@ def main():
         rules_writer = csv.writer(outputFile, delimiter="|")
         for zg1, uni51 in rules_reader:
             for name, codepoint in uni51_characters:
-                uni51 = uni51.lower().replace(codepoint, '@'+name)
+                uni51 = uni51.lower().replace(codepoint, '@{'+name+'}')
             for name, codepoint in zg1_charcters:
-                #print(name, codepoint)
-                zg1 = zg1.lower().replace(codepoint, '@'+name)
+                zg1 = zg1.lower().replace(codepoint, '@{'+name+'}')
             rules_writer.writerow([zg1, uni51])
 
 main()
