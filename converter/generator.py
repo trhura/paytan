@@ -24,8 +24,8 @@ def main():
     child_dirs = [x for x in cwd_dir.iterdir() if x.is_dir()]
 
     context = {}
-    uni512zg1_file = cwd_dir.joinpath('uni512zg1.rules.verbose')
-    zg12uni51_file = cwd_dir.joinpath('zg12uni51.rules.verbose')
+    uni512zg1_file = cwd_dir.joinpath('uni512zg1.rules')
+    zg12uni51_file = cwd_dir.joinpath('zg12uni51.rules')
     uni51_characters = get_characters(unicode_characters)
     zg1_charcters = get_characters(zawgyi_characters)
 
