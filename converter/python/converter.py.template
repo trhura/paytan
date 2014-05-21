@@ -37,3 +37,18 @@ def zg12uni51(input_text=""):
     {# print("{{rule}}".replace("$", "\\"), output_text) -#}
     {% endfor -%}
     return output_text
+
+def main ():
+        import argparse, sys
+
+        parser = argparse.ArgumentParser(description='Unicode <-> Zawgyi Converter.')
+        parser.add_argument('--to', '-t', choices=['zawgyi', 'unicode'], dest='to', required=True)
+        parser.add_argument('inputfiles', nargs='*', type=argparse.FileType('r', encoding='utf-8'), default=sys.stdin)
+        args = parser.parse_args(sys.argv[1:])
+
+        converter_func = zg12uni51 if args.to == 'unicode' else uni512zg1
+        for fil in args.inputfiles:
+                print(converter_func(fil.read()))
+
+if __name__ == "__main__":
+    main()
