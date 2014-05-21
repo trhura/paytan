@@ -23,15 +23,15 @@ package converter
 import "regexp"
 
 {% for rule in uni512zg1_rules -%}
-var uni512zg1_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0}}`)
+var uni512zg1_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0|replace('\\', '\\\\')}}`)
 {% endfor -%}
 
 {% for rule in zg12uni51_rules -%}
-var zg12uni51_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0}}`)
+var zg12uni51_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0|replace('\\', '\\\\')}}`)
 {% endfor -%}
 {%- print '\n' -%}
 
-func uni512zg1(input_text string) string {
+func Uni512zg1(input_text string) string {
 	output_text := input_text
 	{% for rule in uni512zg1_rules -%}
 	output_text = uni512zg1_rule_{{loop.index}}.ReplaceAllString(output_text, "{{rule.1}}")
@@ -39,7 +39,7 @@ func uni512zg1(input_text string) string {
 	return output_text
 }
 
-func zg12uni51(input_text string) string {
+func Zg12uni51(input_text string) string {
 	output_text := input_text
 	{% for rule in zg12uni51_rules -%}
 	output_text = zg12uni51_rule_{{loop.index}}.ReplaceAllString(output_text, "{{rule.1}}")
