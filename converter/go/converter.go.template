@@ -20,29 +20,31 @@
 
 package converter
 
-import "regexp"
+//import "regexp"
+import "github.com/glenn-brown/golang-pkg-pcre/src/pkg/pcre"
 
+var flags= pcre.UTF8 | pcre.MULTILINE
 {% for rule in uni512zg1_rules -%}
-var uni512zg1_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0|replace('\\', '\\\\')}}`)
+var uni512zg1_rule_{{loop.index}} = pcre.MustCompile(`{{rule.0}}`, flags)
 {% endfor -%}
 
 {% for rule in zg12uni51_rules -%}
-var zg12uni51_rule_{{loop.index}} = regexp.MustCompile(`{{rule.0|replace('\\', '\\\\')}}`)
+var zg12uni51_rule_{{loop.index}} = pcre.MustCompile(`{{rule.0|replace('\\', '\\\\')}}`, flags)
 {% endfor -%}
 {%- print '\n' -%}
 
 func Uni512zg1(input_text string) string {
-	output_text := input_text
+	output_text := []byte(input_text)
 	{% for rule in uni512zg1_rules -%}
-	output_text = uni512zg1_rule_{{loop.index}}.ReplaceAllString(output_text, "{{rule.1}}")
+	output_text = uni512zg1_rule_{{loop.index}}.ReplaceAll(output_text, []byte("{{rule.1}}"), 0)
 	{% endfor -%}
-	return output_text
+	return string(output_text)
 }
 
 func Zg12uni51(input_text string) string {
-	output_text := input_text
+	output_text := []byte(input_text)
 	{% for rule in zg12uni51_rules -%}
-	output_text = zg12uni51_rule_{{loop.index}}.ReplaceAllString(output_text, "{{rule.1}}")
+	output_text = zg12uni51_rule_{{loop.index}}.ReplaceAll(output_text, []byte("{{rule.1}}"), 0)
 	{% endfor -%}
-	return output_text
+	return string(output_text)
 }
