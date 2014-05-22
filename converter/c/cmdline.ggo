@@ -1,0 +1,6 @@
+version "0.0.1"
+package "converter"
+purpose "Program to convert zawgyi <-> unicode"
+args "-u"
+
+option "to" t "target encoding" string typestr="encoding" values="zawgyi","unicode" required

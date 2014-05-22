@@ -1,0 +1,81 @@
+// Zawgyi<>Unicode converter for C
+// Based on rules from Parabaik Myanmar Text Converter
+// Copyright (C) 2014 Ngwe Tun (Solveware Solution)
+// Copyright (C) 2014 Thura Hlaing
+
+// This file is part of Paytan.
+
+// Paytan is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// Paytan is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+#include <stdio.h>
+#include <string.h>
+#include <pcre.h>
+#include "cmdline.h"
+
+typedef struct gengetopt_args_info args_info;
+
+void test() {
+    const char *error = NULL;
+    int offset = NULL;
+
+    {% for rule in uni512zg1_rules -%}
+    pcre* uni512zg1_rule_{{loop.index}} = pcre_compile(
+						       "{{rule.0}}",         /* the pattern */
+						       0,                    /* default options */
+						       &error,               /* for error message */
+						       &offset,           /* for error offset */
+						       NULL);                /* use default character tables */
+    if (uni512zg1_rule_{{loop.index}} == NULL) {
+	printf("PCRE compilation failed at offset %d: %s\n", offset, error);
+    }
+    {% endfor -%}
+
+}
+
+void handle_arguments(int, char**, args_info*);
+
+int main(int argc, char **argv) {
+    args_info args;
+    handle_arguments(argc, argv, &args);
+    setlocale("LC_ALL", "en_US.utf8");
+
+    int i = 0;
+    for (; i < args.inputs_num; i++) {
+	FILE *file = fopen(args.inputs[i], "r");
+	if (file == NULL) {
+	    fprintf(stderr, "Unable to open file: %s\n", args.inputs[i]);
+	    continue;
+	}
+
+	fclose(file);
+    }
+
+    test();
+}
+
+void handle_arguments(int argc, char **argv, args_info* args) {
+    /* let's call our cmdline parser */
+    if (cmdline_parser (argc, argv, args) != 0)
+	exit(1) ;
+
+    if (args->help_given)
+	{
+	    cmdline_parser_print_help ();
+	}
+
+    if (args->version_given)
+	{
+	    cmdline_parser_print_version ();
+	}
+}
