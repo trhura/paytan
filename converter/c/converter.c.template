@@ -21,6 +21,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <pcre.h>
+#include <locale.h>
+
 #include "cmdline.h"
 
 typedef struct gengetopt_args_info args_info;
@@ -48,7 +50,7 @@ void handle_arguments(int, char**, args_info*);
 int main(int argc, char **argv) {
     args_info args;
     handle_arguments(argc, argv, &args);
-    setlocale("LC_ALL", "en_US.utf8");
+    setlocale(LC_ALL, "en_US.utf8");
 
     int i = 0;
     for (; i < args.inputs_num; i++) {

@@ -1,18 +1,19 @@
 APPNAME = converter
-OBJECTS = converter.o cmdline.o
+OBJECTS = cmdline.o converter.o
 CC = gcc
 SRCS = converter.c \
 	cmdline.h \
 	cmdline.c
+CFLAGS=-std=c99
 
 all: $(OBJECTS)
-	$(CC) $(OBJECTS) -lpcre -o $(APPNAME)
+	$(CC) $(CFLAGS) $(OBJECTS) -lpcre -o $(APPNAME)
 
 cmdline.o: cmdline.c
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 converter.o: converter.c
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 cmdline.c: cmdline.ggo
 	gengetopt --input=cmdline.ggo --include-getopt
