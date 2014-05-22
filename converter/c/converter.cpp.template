@@ -18,27 +18,32 @@
 // You should have received a copy of the GNU General Public License
 // along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <stdio.h>
-#include <string.h>
-#include <pcre.h>
-#include <locale.h>
+#include <locale>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <pcrecpp.h>
 
 #include "cmdline.h"
 
+using namespace std;
+
 typedef struct gengetopt_args_info args_info;
 
-char* uni512zg1 (char *input) {
-    char* output = NULL;
+string uni512zg1 (string input) {
+    string output = input;
     {% for rule in uni512zg1_rules -%}
-    pcre *uni512zg1_rule_{{loop.index}} = pcre_compile("{{rule.0}}", 0, NULL, NULL, NULL);
+    //pcre *uni512zg1_rule_{{loop.index}} = pcre_compile("{{rule.0}}", 0, NULL, NULL, NULL);
+
     {% endfor -%}
     return output;
 }
 
-char* zg12uni51 (char *input) {
-    char* output = NULL;
+string zg12uni51 (string input) {
+    string output = input;
     {% for rule in zg12uni51_rules -%}
-    pcre *zg12uni51_rule_{{loop.index}} = pcre_compile("{{rule.0}}", 0, NULL, NULL, NULL);
+    //pcre *zg12uni51_rule_{{loop.index}} = pcre_compile("{{rule.0}}", 0, NULL, NULL, NULL);
     {% endfor -%}
     return output;
 }
@@ -49,17 +54,16 @@ void handle_arguments(int, char**, args_info*);
 int main(int argc, char **argv) {
     args_info args;
     handle_arguments(argc, argv, &args);
-    setlocale(LC_ALL, "en_US.utf8");
+    locale("en_US.UTF8");
 
     int i = 0;
     for (; i < args.inputs_num; i++) {
-	FILE *file = fopen(args.inputs[i], "r");
-	if (file == NULL) {
-	    fprintf(stderr, "Unable to open file: %s\n", args.inputs[i]);
-	    continue;
+	wifstream file;
+	file.open(args.inputs[i]);
+	if (!file.good()) {
+	    cout << "Unable to read file `" << args.inputs[i] << "`." << endl;
 	}
-
-	fclose(file);
+	file.close();
     }
 }
 
