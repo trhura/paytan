@@ -36,10 +36,10 @@
 ([@{letter_ka}-@{letter_a}@{letter_o}])((?:@{virama}[@{letter_ka}-@{letter_a}])?)((?:[@{ya}-@{ha}@{shan_tone_2}]*)?)@{e}	|	@{e}$1$2$3
 ([@{letter_ka}-@{letter_a}@{letter_o}])((?:@{virama}[@{letter_ka}-@{letter_a}@{letter_ka}-@{letter_a}])?)(@{ra})	|	$3$1$2
 @{letter_nga}@{asat}@{virama}	|	@{kinzi}
-(@{tone_mark_sgaw_karen_ke_pho})([@{e}]?)([@{ra}]?)([@{letter_ka}-@{letter_a}])@{i}	|	$2$3$4@{kinzi_i}
-(@{tone_mark_sgaw_karen_ke_pho})(@{e})?(@{ra})?([@{letter_ka}-@{letter_a}])@{ii}	|	$2$3$4@{kinzi_ii}
-(@{tone_mark_sgaw_karen_ke_pho})(@{e})?(@{ra})?([@{letter_ka}-@{letter_a}])@{anusvara}	|	$2$3$4@{kinzi_anusvara}
-(@{tone_mark_sgaw_karen_ke_pho})(@{e})?(@{ra})?([@{letter_ka}-@{letter_a}])	|	$2$3$4@{kinzi}
+(@{tone_mark_sgaw_karen_ke_pho})((?:@{e})?)((?:@{ra})?)([@{letter_ka}-@{letter_a}])@{i}	|	$2$3$4@{kinzi_i}
+(@{tone_mark_sgaw_karen_ke_pho})((?:@{e})?)((?:@{ra})?)([@{letter_ka}-@{letter_a}])@{ii}	|	$2$3$4@{kinzi_ii}
+(@{tone_mark_sgaw_karen_ke_pho})((?:@{e})?)((?:@{ra})?)([@{letter_ka}-@{letter_a}])@{anusvara}	|	$2$3$4@{kinzi_anusvara}
+(@{tone_mark_sgaw_karen_ke_pho})((?:@{e})?)((?:@{ra})?)([@{letter_ka}-@{letter_a}])	|	$2$3$4@{kinzi}
 @{letter_nnya}(?=[@{virama}@{u}@{uu}])	|	@{nnya_short}
 @{letter_nnya}	|	@{letter_nnya}
 @{letter_ra}(?=[@{u}@{uu}])	|	@{ya_short}

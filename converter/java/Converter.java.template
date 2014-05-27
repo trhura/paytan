@@ -18,12 +18,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
+import net.sourceforge.argparse4j.ArgumentParsers;
+import net.sourceforge.argparse4j.inf.ArgumentParser;
+import net.sourceforge.argparse4j.inf.ArgumentParserException;
+import net.sourceforge.argparse4j.inf.Namespace;
+import net.sourceforge.argparse4j.annotation.Arg;
+
+import java.io.Reader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.FileReader;
+
 public class Converter{
 
     public static String uni512zg1(String input_text) {
 	String output_text = input_text;
 	{% for rule in uni512zg1_rules -%}
-	output_text = output_text.replaceAll("{{rule.0}}", "{{rule.1}}");
+	output_text = output_text.replaceAll("{{rule.0|replace('\\', '\\\\')}}", "{{rule.1}}");
 	{# // debugging -#}
 	{# console.log("{{rule}}" -#}
 	{% endfor -%}
@@ -33,11 +46,80 @@ public class Converter{
     public static String zg12uni51(String input_text) {
 	String output_text = input_text;
 	{% for rule in zg12uni51_rules -%}
-	output_text = output_text.replaceAll("{{rule.0}}", "{{rule.1}}");
+	output_text = output_text.replaceAll("{{rule.0|replace('\\', '\\\\')}}", "{{rule.1}}");
 	{# // debugging -#}
 	{# console.log("{{rule}}" -#}
 	{% endfor -%}
 	return output_text;
     }
 
+    public static void main (String argv[]) {
+	Option opt = new Option().handleArguments(argv);
+
+	if (opt.files.length == 0) {
+	    convert(new InputStreamReader(System.in), opt.to);
+	    return;
+	}
+
+	for(String file: opt.files) {
+	    try {
+		convert(new FileReader(file), opt.to);
+	    } catch (FileNotFoundException e) {
+		System.err.println(e);
+	    }
+	}
+    }
+
+    public static void convert (Reader reader, String to) {
+	BufferedReader bufferedReader = new BufferedReader(reader);
+	char[] buf = new char[1024 * 10];
+	StringBuffer input = new StringBuffer();
+
+	try {
+	    int len = 0;
+	    while(bufferedReader.ready() && (len = bufferedReader.read(buf, 0, buf.length)) > 0) {
+		input.append(buf, 0, len);
+	    }
+
+	    if (to.equals("unicode")) {
+		System.out.print(zg12uni51(input.toString()));
+	    } else {
+		System.out.print(uni512zg1(input.toString()));
+	    }
+
+	} catch (IOException e) {
+	    System.err.println("Caught exception :" + e);
+	    e.printStackTrace();
+	}
+    }
+
+    public static class Option {
+	@Arg(dest="to")
+	public String to;
+	@Arg(dest="files")
+	public String files[];
+
+	public Option handleArguments (String argv[]) {
+	    ArgumentParser parser = ArgumentParsers.newArgumentParser("Converter")
+		.defaultHelp(true)
+		.description("Convert Zawgyi <-> Unicode encodings.");
+
+	    parser.addArgument("-t", "--to")
+		.choices("zawgyi", "unicode")
+		.required(true)
+		.help("Specify hash function to use");
+
+	    parser.addArgument("files").nargs("*")
+		.help("Files to convert");
+
+	    try {
+		parser.parseArgs(argv, this);
+	    } catch (ArgumentParserException e) {
+		parser.handleError(e);
+		System.exit(1);
+	    }
+
+	    return this;
+	}
+    }
 }
