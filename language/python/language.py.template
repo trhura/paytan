@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Myanmar Language Attributes module for python
 # Copyright (C) 2014 Thura Hlaing
 
@@ -16,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
+
 {% for character in characters -%}
 {{character.name}} = '{{character.value}}'
 {% endfor -%}
@@ -23,3 +26,30 @@
 {% for category in categories -%}
 {{category.name}} = {{category.characters}}
 {% endfor -%}
+
+class SyllableIter:
+    def __init__(self, string):
+        self.pattern = re.compile(r"{{syllable_rule}}")
+        self.string = string
+        self.start = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.start >= len(self.string):
+            raise StopIteration
+
+        match = self.pattern.search (self.string, self.start)
+        if not match:
+            therest = self.string[self.start:]
+            self.start = len(self.string)
+            return therest
+        else:
+            if match.start() == self.start:
+                self.start = match.end()
+                return match.group()
+            else:
+                ret = self.string[self.start:match.start()]
+                self.start = match.start()
+                return ret

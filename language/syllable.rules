@@ -1,0 +1,2 @@
+[@{consonants}][@{medials}]*[@{vowels}]*[@{tones}]*
+[@{indep_vowels}]
