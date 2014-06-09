@@ -40,7 +40,7 @@ def get_medials():
     return [chr(x) for x in range(ord(medial_ya), ord(medial_ha)+1)]
 
 def get_vowels():
-    return [chr(x) for x in range(ord(vowel_tall_aa), ord(vowel_ai)+1)]
+    return [chr(x) for x in range(ord(vowel_tall_aa), ord(vowel_ai)+1)] + [anusvara]
 
 def get_tones():
     return [dot_below, visarga]

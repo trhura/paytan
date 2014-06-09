@@ -1,2 +1,5 @@
-[@{consonants}][@{medials}]*[@{vowels}]*[@{tones}]*
 [@{indep_vowels}]
+[@{digits}]
+[@{consonants}]@{virama}[@{consonants}][@{vowels}]*[@{tones}]*
+(@{letter_nga}@{asat}@{virama})[@{consonants}][@{medials}]*[@{vowels}@{asat}]*[@{tones}]*
+[@{consonants}][@{medials}]*[@{vowels}@{asat}]*([@{consonants}][@{medials}]?@{dot_below}?(@{asat}(?!@{virama})))?[@{tones}]*
