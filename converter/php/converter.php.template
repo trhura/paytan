@@ -39,8 +39,4 @@ function uni512zg1 ($str) {
 	return $str;
 }
 
-if (isset($argv[1])) {
-    echo  zg12uni51($argv[1]);
-}
-
 ?>
