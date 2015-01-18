@@ -2,9 +2,10 @@
 
 import csv
 import os
+import re
 import pathlib
 import string
-from jinja2 import Template
+from jinja2 import Template, Environment
 
 import unicode_characters
 import zawgyi_characters
@@ -17,6 +18,14 @@ def get_characters (module):
     unirepr = lambda x: getattr(module, x).encode('unicode_escape')
     characters = { x: unirepr(x).decode('utf-8') for x in characters}
     return characters
+
+# Custom filter method
+def re_sub(value, find, replace):
+    """A non-optimal implementation of a regex filter"""
+    return re.sub(find, replace, value)
+
+def hex_encode(value):
+    return value.encode('utf8').decode('unicode_escape')
 
 def main():
     cwd_dir = pathlib.Path(__file__).parent
@@ -53,6 +62,8 @@ def main():
             with template_file.open('r') as templateFile, \
                 open(os.path.join(child_dir.as_posix(), template_file.stem), 'w') as outputFile:
                 template = Template(templateFile.read())
+                template.environment.filters['re_sub'] = re_sub
+                template.environment.filters['hex_encode'] = hex_encode
                 outputFile.write(template.render(**context))
 
 main()
