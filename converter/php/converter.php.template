@@ -1,0 +1,46 @@
+<?php
+
+/* Zawgyi<>Unicode converter python module */
+/* Based on rules from Parabaik Myanmar Text Converter */
+/* Copyright (C) 2014 Ngwe Tun (Solveware Solution) */
+/* Copyright (C) 2014 Thura Hlaing */
+
+/* This file is part of Paytan. */
+
+/* Paytan is free software: you can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation, either version 3 of the License, or */
+/* (at your option) any later version. */
+
+/* Paytan is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */
+/* GNU General Public License for more details. */
+
+/* You should have received a copy of the GNU General Public License */
+/* along with Foobar.  If not, see <http://www.gnu.org/licenses/>. */
+
+
+function zg12uni51 ($str) {
+	{% for rule in zg12uni51_rules -%}
+	$str = preg_replace('/{{rule.0|re_sub('u([0-9a-fA-F]{4})','x{\\1}')}}/u',
+			    '{{rule.1|hex_encode}}',$str);
+	{% endfor -%}
+
+	return $str;
+}
+
+function uni512zg1 ($str) {
+	{% for rule in uni512zg1_rules -%}
+	$str = preg_replace('/{{rule.0|re_sub('u([0-9a-fA-F]{4})','x{\\1}')}}/u',
+			    '{{rule.1|hex_encode}}',$str);
+	{% endfor -%}
+
+	return $str;
+}
+
+if (isset($argv[1])) {
+    echo  zg12uni51($argv[1]);
+}
+
+?>
