@@ -7,7 +7,7 @@
 @{na_short}	|	@{letter_na}
 @{letter_da}	|	@{letter_da}
 @{letter_dha}	|	@{letter_dha}
-[@{ha}@{ha_short}]	|	@{wa}
+[@{ha}@{ha_short}]	|	@{ha}
 @{wa}	|	@{wa}
 [@{ra}@{ra_wide}@{ra_narrow_upper_cut}@{ra_wide_upper_cut}@{ra_narrow_lower_cut}@{ra_wide_lower_cut}@{ra_narrow_both_cut}@{ra_wide_both_cut}]	|	@{ra}
 [@{ya}@{ya_cut}]	|	@{ya}
