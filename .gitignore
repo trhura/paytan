@@ -1,2 +1,9 @@
 .DS_Store
 *__pycache__
+
+# Generated files
+converter/java/Converter.java
+converter/javascript/converter.js
+converter/php/converter.php
+converter/python/converter.py
+converter/ruby/converter.rb
