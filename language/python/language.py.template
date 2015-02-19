@@ -18,6 +18,7 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
+from itertools import izip, repeat
 
 {% for character in characters -%}
 {{character.name}} = '{{character.value}}'
@@ -26,6 +27,12 @@ import re
 {% for category in categories -%}
 {{category.name}} = {{category.characters}}
 {% endfor -%}
+
+known_syllables = dict(izip({{ known_syllables }}, repeat(True)))
+
+def is_valid_syllable (syllable):
+    global known_syllables
+    return syllable in known_syllables
 
 class SyllableIter:
     def __init__(self, string):

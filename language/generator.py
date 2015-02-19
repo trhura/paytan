@@ -16,6 +16,7 @@ def main():
     add_characters(context)
     add_categories(context)
     add_syllable_rule(context)
+    add_syllable_test(context)
 
     for child_dir in child_dirs:
         for template_file in child_dir.glob("*.template"):
@@ -70,6 +71,13 @@ def add_categories (context):
     categories.append(C("indep_vowels", get_indep_vowels()))
     categories.append(C("symbols", get_symbols()))
     context['categories'] = categories
+
+def add_syllable_test (context):
+    cwd_dir = pathlib.Path(__file__).parent
+    syllables_file = cwd_dir.joinpath('known-syllables.txt')
+    with syllables_file.open('r') as syllableFile:
+        known_syllables = list(map(lambda l: l.strip(), syllableFile.readlines()))
+        context['known_syllables'] = known_syllables
 
 def add_syllable_rule (context):
     class RuleTemplate(string.Template): delimiter = '@'
