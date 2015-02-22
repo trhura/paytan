@@ -1,6 +1,5 @@
 // Zawgyi<>Unicode converter python module
-// Based on rules from Parabaik Myanmar Text Converter
-// Copyright (C) 2014 Ngwe Tun (Solveware Solution)
+// Based on rules from Parabaik Myanmar Text Converter Copyright (C) 2014 Ngwe Tun (Solveware Solution)
 // Copyright (C) 2014 Swan Htet Aung
 
 // This file is part of Paytan.
@@ -18,18 +17,35 @@
 // You should have received a copy of the GNU General Public License
 // along with Folder.  If not, see <http://www.gnu.org/licenses/>.
 
-def uni512zg1(input_text: String) = {
-  var output_text = input_text
-  {% for rule in uni512zg1_rules -%}
-  output_text = output_text.replaceAll("{{rule.0|replace('\\', '\\\\')}}", "{{rule.1}}")
-  {% endfor -%}
-  output_text
-}
+// @author SH (github.com/swanhtet1992)
+object Converter {
 
-def zg12uni51(input_text: String) = {
-  var output_text = input_text
-  {% for rule in zg12uni51_rules -%}
-  output_text = output_text.replaceAll("{{rule.0|replace('\\', '\\\\')}}", "{{rule.1}}")
-  {% endfor -%}
-  output_text
+  def convertFile(to: String, path: String) {
+    import tools.nsc.io.File
+    import io.Source
+
+    val text = Source.fromFile(path).mkString
+
+    to match {
+        case "zg" => File("./zawgyi.txt").writeAll(uni512zg1(text))
+        case "uni" => File("./unicode.txt").writeAll(zg12uni51(text))
+        case _ => println("Please give me valid options")
+    }
+  }
+
+  def uni512zg1(input: String) = {
+    var outputText = input
+    {% for rule in uni512zg1_rules -%}
+    outputText = outputText.replaceAll("{{rule.0|replace('\\', '\\\\')}}", "{{rule.1}}")
+    {% endfor -%}
+    outputText
+  }
+
+  def zg12uni51(input: String) = {
+    var outputText = input
+    {% for rule in zg12uni51_rules -%}
+    outputText = outputText.replaceAll("{{rule.0|replace('\\', '\\\\')}}", "{{rule.1}}")
+    {% endfor -%}
+    outputText
+  }
 }
