@@ -7,3 +7,4 @@ converter/javascript/converter.js
 converter/php/converter.php
 converter/python/converter.py
 converter/ruby/converter.rb
+converter/scala/Converter.scala
