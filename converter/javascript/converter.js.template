@@ -21,7 +21,7 @@
 function uni512zg1(input_text) {
     var output_text = input_text;
     {% for rule in uni512zg1_rules -%}
-    output_text = output_text.replace(/{{rule.0|replace("(?","(\?")}}/gm, "{{rule.1}}");
+    output_text = output_text.replace(/{{rule.0|js_re_sub}}/gm, "{{rule.1}}");
     {# // debugging -#}
     {# console.log("{{rule}}" -#}
     {% endfor -%}
@@ -31,7 +31,7 @@ function uni512zg1(input_text) {
 function zg12uni51(input_text) {
     var output_text = input_text;
     {% for rule in zg12uni51_rules -%}
-    output_text = output_text.replace(/{{rule.0|replace("(?", "(\?")}}/gm, "{{rule.1}}");
+    output_text = output_text.replace(/{{rule.0|js_re_sub}}/gm, "{{rule.1}}");
     {# // debugging -#}
     {# console.log("{{rule}}" -#}
     {% endfor -%}
