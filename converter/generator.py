@@ -27,6 +27,10 @@ def re_sub(value, find, replace):
 def hex_encode(value):
     return value.encode('utf8').decode('unicode_escape')
 
+def js_re_sub(value):
+    # js regex doesn't support lookbehinds
+    return re.sub("\?<=" , "", value)
+
 def main():
     cwd_dir = pathlib.Path(__file__).parent
     rules_files = list(cwd_dir.glob('*.rules'))
@@ -74,6 +78,7 @@ def main():
                 template = Template(templateFile.read())
                 template.environment.filters['re_sub'] = re_sub
                 template.environment.filters['hex_encode'] = hex_encode
+                template.environment.filters['js_re_sub'] = js_re_sub
                 outputFile.write(template.render(**context))
 
 main()
