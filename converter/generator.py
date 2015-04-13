@@ -35,6 +35,7 @@ def main():
     context = {}
     uni512zg1_file = cwd_dir.joinpath('uni512zg1.rules')
     zg12uni51_file = cwd_dir.joinpath('zg12uni51.rules')
+    zg1detect_file = cwd_dir.joinpath('is_zawgyi.rules')
     uni51_characters = get_characters(unicode_characters)
     zg1_charcters = get_characters(zawgyi_characters)
 
@@ -55,6 +56,15 @@ def main():
             zg1 = RuleTemplate(zg1.strip()).substitute(**zg1_charcters)
             rules_list.append([zg1, uni51])
         context['zg12uni51' + '_rules'] = rules_list
+
+    with zg1detect_file.open('r') as rulesFile:
+        rules = rulesFile.readlines()
+        rules = map(lambda x: x.strip(), rules)
+        rules = map(lambda x: RuleTemplate(x).substitute(**zg1_charcters), rules)
+        rules = filter(lambda x: x != "", rules)
+        rules = filter(lambda x: not x.startswith("#"), rules)
+        is_zgy_rule = "|".join(rules)
+        context['is_zawgyi_rule'] = is_zgy_rule
 
     for child_dir in child_dirs:
         for template_file in child_dir.glob("*.template"):

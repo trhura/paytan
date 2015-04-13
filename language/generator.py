@@ -56,7 +56,7 @@ def get_indep_vowels():
     return [chr(x) for x in range(ord(letter_i), ord(letter_au)+1)]
 
 def get_symbols():
-    return [chr(x) for x in range(ord(symbol_locative), ord(symbol_genitive)+1)]
+    return [chr(x) for x in range(ord(symbol_locative), ord(symbol_genitive)+1)] + [letter_e]
 
 def add_categories (context):
     categories = []

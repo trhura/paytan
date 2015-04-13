@@ -1,0 +1,34 @@
+# zawgyi characters out of unicode range
+[@{tall_u}@{tall_uu}@{tall_aa_asat}@{stacked_ka}-@{end}]
+
+# thawaytho with small na/ra
+@{e}[@{na_short}@{ya_short}]
+
+# Medial Ra right after \u1031
+@{e}[@{ra}@{ra_wide}-@{ra_wide_both_cut}]
+
+# thawayhto without a cons or medial infront
+[^@{letter_ka}-@{letter_a}@{letter_o}@{ra}@{ya}@{wa}@{ha}]@{e}
+
+# ra without a cons or e infront
+[^@{letter_ka}-@{letter_a}@{letter_o}@{e}]@{ra}
+
+# either thawayhto or ra after a space
+\s[@{e}@{ra}@{ra_wide}-@{ra_wide_both_cut}]
+
+# starting with either thawayhto or ra
+^[@{e}@{ra}@{ra_wide}-@{ra_wide_both_cut}]
+
+# virama used instead of asat (not followed by a cons)
+@{asat}[^@{letter_ka}-@{letter_au}]
+
+# supposing nga + virama do not exists in myanmar unicode
+@{letter_nga}@{asat}
+
+# Out of order medials
+@{wa}[@{ra}@{ra_wide}-@{ra_wide_both_cut}]
+@{wa}[@{ya}@{ya_short}]
+@{ha}@{wa}
+
+# Duplicated vowel
+@{u}@{u}

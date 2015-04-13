@@ -17,8 +17,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
+
+# Only tested with python 3
+
 import re
-from itertools import izip, repeat
+from itertools import repeat
 
 {% for character in characters -%}
 {{character.name}} = '{{character.value}}'
@@ -28,7 +31,7 @@ from itertools import izip, repeat
 {{category.name}} = {{category.characters}}
 {% endfor -%}
 
-known_syllables = dict(izip({{ known_syllables }}, repeat(True)))
+known_syllables = set({{ known_syllables }})
 
 def is_valid_syllable (syllable):
     global known_syllables
@@ -36,12 +39,15 @@ def is_valid_syllable (syllable):
 
 class SyllableIter:
     def __init__(self, string):
-        self.pattern = re.compile(r"{{syllable_rule}}")
+        self.pattern = re.compile(u"{{syllable_rule}}", re.U)
         self.string = string
         self.start = 0
 
     def __iter__(self):
         return self
+
+    def next(self):
+        return self.__next__()
 
     def __next__(self):
         if self.start >= len(self.string):

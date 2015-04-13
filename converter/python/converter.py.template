@@ -38,6 +38,9 @@ def zg12uni51(input_text=""):
     {% endfor -%}
     return output_text
 
+def is_zawgyi (input_text):
+	return re.search ('{{ is_zawgyi_rule }}', input_text) != None
+
 def main ():
         import argparse, sys
 
