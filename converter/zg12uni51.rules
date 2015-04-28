@@ -12,8 +12,8 @@
 [@{ra}@{ra_wide}@{ra_narrow_upper_cut}@{ra_wide_upper_cut}@{ra_narrow_lower_cut}@{ra_wide_lower_cut}@{ra_narrow_both_cut}@{ra_wide_both_cut}]	|	@{ra}
 [@{ya}@{ya_cut}]	|	@{ya}
 @{ha}@{ra}	|	@{ya}@{wa}
-@{wa_ha}	|	@{wa}@{wa}
-@{ha}@{ha}	|	@{wa}@{wa}
+@{wa_ha}	|	@{wa}@{ha}
+@{ha}@{wa}	|	@{wa}@{ha}
 ((?:@{e})?)((?:@{wa})?)([@{letter_ka}-@{letter_a}])@{kinzi}	|	@{tone_mark_sgaw_karen_ke_pho}$1$2$3
 ((?:@{e})?)((?:@{wa})?)([@{letter_ka}-@{letter_a}])@{kinzi_i}	|	@{tone_mark_sgaw_karen_ke_pho}$1$2$3@{i}
 ((?:@{e})?)((?:@{wa})?)([@{letter_ka}-@{letter_a}])@{kinzi_ii}	|	@{tone_mark_sgaw_karen_ke_pho}$1$2$3@{ii}
