@@ -11,7 +11,7 @@
 @{wa}	|	@{wa}
 [@{ra}@{ra_wide}@{ra_narrow_upper_cut}@{ra_wide_upper_cut}@{ra_narrow_lower_cut}@{ra_wide_lower_cut}@{ra_narrow_both_cut}@{ra_wide_both_cut}]	|	@{ra}
 [@{ya}@{ya_cut}]	|	@{ya}
-@{ha}@{ra}	|	@{ya}@{wa}
+@{ha}@{ra}	|	@{ya}@{ha}
 @{wa_ha}	|	@{wa}@{ha}
 @{ha}@{wa}	|	@{wa}@{ha}
 ((?:@{e})?)((?:@{wa})?)([@{letter_ka}-@{letter_a}])@{kinzi}	|	@{tone_mark_sgaw_karen_ke_pho}$1$2$3
@@ -65,6 +65,6 @@
 (?<=(@{letter_wa}))(@{zero})(?=\s)?	|	@{letter_wa}
 (?<=([@{letter_ka}-@{letter_la}@{letter_sa}-@{letter_au}@{aa}@{ii}-@{ha}@{locative}-@{end}\s]))(@{seven})	|	@{letter_ra}
 (@{seven})(?=[@{letter_ka}-@{letter_la}@{letter_sa}-@{letter_au}@{aa}@{ii}-@{ha}@{locative}-@{end}\s])	|	@{letter_ra}
-((?:@{e})?)([@{letter_ka}-@{letter_a}])((?:@{asat}[@{letter_ka}-@{letter_a}])?)((?:[@{i}@{ii}@{ai}])?)([@{anusvara}@{dot_below}@{visarga}]{0,2})([@{ra}-@{ha}]{0,3})((?:[@{u}@{uu}])?)([@{anusvara}@{dot_below}@{visarga}]{0,2})((?:[@{i}@{ii}@{ai}])?)	|	$2$3$6$1$4$9$7$5$8
+((?:@{e})?)([@{letter_ka}-@{letter_a}])((?:@{asat}[@{letter_ka}-@{letter_a}])?)((?:[@{i}@{ii}@{ai}])?)([@{anusvara}@{dot_below}@{visarga}]{0,2})([@{ra}-@{wa}]{0,3})((?:[@{u}@{uu}])?)([@{anusvara}@{dot_below}@{visarga}]{0,2})((?:[@{i}@{ii}@{ai}])?)	|	$2$3$6$1$4$9$7$5$8
 @{anusvara}@{u}	|	@{u}@{anusvara}
 (@{ya})(@{dot_below})	|	$2$1
