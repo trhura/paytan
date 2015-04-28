@@ -22,8 +22,8 @@
 @{i_anusvara}	|	@{i}@{anusvara}
 @{tall_u}	|	@{u}
 @{tall_uu}	|	@{uu}
-@{ha_u}	|	@{wa}@{u}
-@{ha_uu}	|	@{wa}@{uu}
+@{ha_u}	|	@{ha}@{u}
+@{ha_uu}	|	@{ha}@{uu}
 @{asat}	|	@{asat}
 [@{dot_below_right}@{dot_below_righter}]	|	@{dot_below}
 ([@{letter_ka}-@{letter_a}])([@{aa}@{i}@{ii}@{ai}@{anusvara}]){1,2}([@{stacked_ka}@{stacked_kha}@{stacked_ga}@{stacked_gha}@{stacked_ca}@{stacked_cha}@{stacked_cha_right}@{stacked_ja}@{stacked_jha}@{stacked_nna}@{stacked_ta}@{stacked_ta_right}@{stacked_tha}@{stacked_tha_right}@{stacked_da}@{stacked_dha}@{stacked_na}@{stacked_pa}@{stacked_pha}@{stacked_ba}@{stacked_bha}@{stacked_ma}@{stacked_la}])	|	$1$3$2
