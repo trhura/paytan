@@ -18,7 +18,7 @@ We'll add more languages, especially, `php` . And you can send us a pull request
 
 For Ubuntu,
 ```bash
-$ sudo apt-get install python3 python3-jijna2
+$ sudo apt-get install python3 python3-jinja2
 ```
 
 + For OSX,
