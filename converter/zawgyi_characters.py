@@ -58,6 +58,8 @@ ya = '\u103A'
 ra = '\u103B'
 wa = '\u103C'
 ha = '\u103D'
+u103e = '\u103E'
+u103f = '\u103F'
 zero = '\u1040'
 one = '\u1041'
 two = '\u1042'
@@ -131,13 +133,3 @@ dot_below_right='\u1094'
 dot_below_righter='\u1095'
 tta_tta='\u1097'
 end='\u109F'
-
-
-
-
-
-
-
-
-
-
