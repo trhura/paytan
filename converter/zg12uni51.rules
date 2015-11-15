@@ -60,11 +60,11 @@
 (@{wa})([@{letter_ka}-@{letter_a}])((?:@{asat}[@{letter_ka}-@{letter_a}])?)	|	$2$3$1
 (@{ha})(@{ha})([@{ra}@{wa}])	|	$3$2$1
 (@{ha})([@{ra}@{wa}])	|	$2$1
-(@{ha})([@{ra}@{wa}])	|	$2$1
 (?<=([@{letter_ka}-@{letter_la}@{letter_sa}-@{letter_au}@{aa}@{ii}-@{ha}@{locative}-@{end}]))(@{zero})(?=\s)?	|	@{letter_wa}
 (?<=(@{letter_wa}))(@{zero})(?=\s)?	|	@{letter_wa}
 (?<=([@{letter_ka}-@{letter_la}@{letter_sa}-@{letter_au}@{aa}@{ii}-@{ha}@{locative}-@{end}\s]))(@{seven})	|	@{letter_ra}
 (@{seven})(?=[@{letter_ka}-@{letter_la}@{letter_sa}-@{letter_au}@{aa}@{ii}-@{ha}@{locative}-@{end}\s])	|	@{letter_ra}
 ((?:@{e})?)([@{letter_ka}-@{letter_a}])((?:@{asat}[@{letter_ka}-@{letter_a}])?)((?:[@{i}@{ii}@{ai}])?)([@{anusvara}@{dot_below}@{visarga}]{0,2})([@{ra}-@{u103e}]{0,3})((?:[@{u}@{uu}])?)([@{anusvara}@{dot_below}@{visarga}]{0,2})((?:[@{i}@{ii}@{ai}])?)	|	$2$3$6$1$4$9$7$5$8
+(@{u103e})([@{ra}@{wa}@{ha}])	|	$2$1
 @{anusvara}@{u}	|	@{u}@{anusvara}
 (@{ya})(@{dot_below})	|	$2$1

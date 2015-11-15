@@ -34,7 +34,7 @@ def zg12uni51(input_text=""):
     {% for rule in zg12uni51_rules -%}
     output_text = re.sub('{{rule.0}}', '{{rule.1|replace("$", "\\\\") }}', output_text, flags=re.M)
     {# # debugging -#}
-    {# print("{{rule}}".replace("$", "\\"), output_text) -#}
+    print("{{rule}}".replace("$", "\\"), output_text)
     {% endfor -%}
     return output_text
 
