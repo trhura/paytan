@@ -1,0 +1,36 @@
+import re
+
+
+mobile_code_re = {{mobile_code}}
+country_code_re = {{country_code}}
+
+ooredoo_re = {{ooredoo}}
+telenor_re = {{telenor}}
+mpt_re = {{mpt}}
+all_operators_re = r"(?P<anyoperator>{0}|{1}|{2})".format(
+    ooredoo_re, telenor_re, mpt_re
+)
+
+mm_phone_re = re.compile(
+    r"^({0}?{1})?{2}$".format(
+        country_code_re, mobile_code_re, all_operators_re
+    )
+)
+
+
+def is_valid_mm_phonenumber(phonenumber):
+    phonenumber = str(phonenumber).strip()
+    return mm_phone_re.match(phonenumber) is not None
+
+
+def normalize_mm_phonenumber(phonenumber):
+    phonenumber = str(phonenumber).strip()
+    match = mm_phone_re.match(phonenumber)
+    if not match:
+        raise RuntimeError(
+            "%s is not a valid Myanmar phonenumber." % phonenumber
+        )
+
+    phonenumber = match.group('anyoperator')
+    phonenumber = '959' + phonenumber
+    return int(phonenumber)
