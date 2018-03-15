@@ -16,11 +16,11 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-const mobileCode = {{mobile_code}};
-const countryCode = {{country_code}};
-const ooredooNumber = {{ooredoo_no}};
-const telenorNumber = {{telenor_no}};
-const mptNumber ={{mpt_no}};
+const mobileCode = {{mobile_code|replace('\\','\\\\')}};
+const countryCode = {{country_code|replace('\\','\\\\')}};
+const ooredooNumber = {{ooredoo_no|replace('\\','\\\\')}};
+const telenorNumber = {{telenor_no|replace('\\','\\\\')}};
+const mptNumber ={{mpt_no|replace('\\','\\\\')}};
 const allOperators = `(${ooredooNumber}|${telenorNumber}|${mptNumber})$`;
 const mmNumber = `^${countryCode}?${mobileCode}?${allOperators}`;
 
