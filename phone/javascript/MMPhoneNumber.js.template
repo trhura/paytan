@@ -1,0 +1,28 @@
+// Myanmar Phone Number validation & normalization for ES6 
+// Based on https://github.com/trhura/mm_phonenumber
+
+const mobileCode = {{mobile_code}};
+const countryCode = {{country_code}};
+const ooredooNumber = {{oo_no}};
+const telenorNumber = {{tele_no}};
+const mptNumber ={{mpt_no}};
+const allOperators = `(${ooredooNumber}|${telenorNumber}|${mptNumber})$`;
+const mmNumber = `^${countryCode}?${mobileCode}?${allOperators}`;
+
+module.exports = class MMPhoneNumber {
+  static isValid(number) {
+    let phone = number.toString();
+    return phone.match(mmNumber) != null;
+  }
+
+  static normalize(number) {
+    let phone = number.toString();
+    let matches = phone.match(mmNumber);
+
+    if (matches == null) {
+      throw new TypeError(`${number} is not a valid phone number.`);
+    }
+
+    return parseInt("959" + matches[3]);
+  }
+}

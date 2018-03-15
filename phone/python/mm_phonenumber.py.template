@@ -1,18 +1,18 @@
+
 import re
 
 
 mobile_code_re = {{mobile_code}}
 country_code_re = {{country_code}}
 
-ooredoo_re = {{ooredoo}}
-telenor_re = {{telenor}}
-mpt_re = {{mpt}}
-all_operators_re = r"(?P<anyoperator>{0}|{1}|{2})".format(
+ooredoo_re = {{oo_no}}
+telenor_re = {{tele_no}}
+mpt_re = {{mpt_no}}
+all_operators_re = "({0}|{1}|{2})".format(
     ooredoo_re, telenor_re, mpt_re
 )
 
-mm_phone_re = re.compile(
-    r"^({0}?{1})?{2}$".format(
+mm_phone_re = re.compile("^({0}?{1})?{2}".format(
         country_code_re, mobile_code_re, all_operators_re
     )
 )
@@ -31,6 +31,7 @@ def normalize_mm_phonenumber(phonenumber):
             "%s is not a valid Myanmar phonenumber." % phonenumber
         )
 
-    phonenumber = match.group('anyoperator')
+    phonenumber = match.groups()[3]
     phonenumber = '959' + phonenumber
     return int(phonenumber)
+    

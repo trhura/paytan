@@ -1,17 +1,23 @@
 #! /usr/bin/env python
 
 import os
+import re
 import pathlib
 from jinja2 import Template
 
+import declaration
+
 mobileinfo = {}
-mobileinfo['mobile_code'] = 'r"(?P<mobile_code>0?9)"'
-mobileinfo['country_code'] = 'r"(?P<country_code>\+?95)"'
-mobileinfo['ooredoo'] = 'r"(?P<oordeoo>9(7|6|5)\d{7}$)"'
-mobileinfo['telenor'] = 'r"(?P<telenor>7(9|8|7|6)\d{7})$"'
-mobileinfo[
-    'mpt'
-] = 'r"(?P<mpt>5\d{6}|4\d{7,8}|2\d{6,8}|3\d{7,8}|6\d{6}|8\d{6}|7\d{7}|9(0|1|9)\d{5,6})$"'
+mobileinfo['mobile_code'] = declaration.mobile_code
+mobileinfo['country_code'] = declaration.country_code
+mobileinfo['oo_no'] = declaration.oo_no
+mobileinfo['tele_no'] = declaration.tele_no
+mobileinfo['mpt_no'] = declaration.mpt_no
+
+
+def js_re_sub(value):
+    # js regex doesn't support lookbehinds
+    return re.sub("\?<=", "", value)
 
 
 def main():
@@ -25,7 +31,7 @@ def main():
                 os.path.join(child_dir.as_posix(), template_file.stem), 'w'
             ) as outputFile:
                 template = Template(templateFile.read())
-                # template.environment.filters['re_sub'] = re_sub
+                template.environment.filters['js_re_sub'] = js_re_sub
                 outputFile.write(template.render(**mobileinfo))
 
 
