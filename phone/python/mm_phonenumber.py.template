@@ -1,12 +1,28 @@
+# Myanmar Phone Number validation & normalization for Python 
+#
+# Copyright 2016 Melomap (www.melomap.com)
+# Copyright 2018 Thura Hlaing (trhura@gmail.com)
+# Copyright 2018 Aye Chan Mon (polestar.mon20@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License. You may obtain
+# a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
 
 import re
-
 
 mobile_code_re = {{mobile_code}}
 country_code_re = {{country_code}}
 
-ooredoo_re = {{oo_no}}
-telenor_re = {{tele_no}}
+ooredoo_re = {{ooredoo_no}}
+telenor_re = {{telenor_no}}
 mpt_re = {{mpt_no}}
 all_operators_re = "({0}|{1}|{2})".format(
     ooredoo_re, telenor_re, mpt_re
