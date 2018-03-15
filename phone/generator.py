@@ -10,14 +10,9 @@ import declaration
 mobileinfo = {}
 mobileinfo['mobile_code'] = declaration.mobile_code
 mobileinfo['country_code'] = declaration.country_code
-mobileinfo['oo_no'] = declaration.oo_no
-mobileinfo['tele_no'] = declaration.tele_no
+mobileinfo['ooredoo_no'] = declaration.ooredoo_no
+mobileinfo['telenor_no'] = declaration.telenor_no
 mobileinfo['mpt_no'] = declaration.mpt_no
-
-
-def js_re_sub(value):
-    # js regex doesn't support lookbehinds
-    return re.sub("\?<=", "", value)
 
 
 def main():
@@ -31,7 +26,6 @@ def main():
                 os.path.join(child_dir.as_posix(), template_file.stem), 'w'
             ) as outputFile:
                 template = Template(templateFile.read())
-                template.environment.filters['js_re_sub'] = js_re_sub
                 outputFile.write(template.render(**mobileinfo))
 
 
