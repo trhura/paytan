@@ -1,18 +1,11 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import os
 import re
 import pathlib
 from jinja2 import Template
 
-import declaration
-
-mobileinfo = {}
-mobileinfo['mobile_code'] = declaration.mobile_code
-mobileinfo['country_code'] = declaration.country_code
-mobileinfo['ooredoo_no'] = declaration.ooredoo_no
-mobileinfo['telenor_no'] = declaration.telenor_no
-mobileinfo['mpt_no'] = declaration.mpt_no
+import context
 
 
 def main():
@@ -26,7 +19,7 @@ def main():
                 os.path.join(child_dir.as_posix(), template_file.stem), 'w'
             ) as outputFile:
                 template = Template(templateFile.read())
-                outputFile.write(template.render(**mobileinfo))
+                outputFile.write(template.render(**vars(context)))
 
 
 if __name__ == "__main__":
